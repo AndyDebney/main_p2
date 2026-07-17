@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: int_customers
+    description: Customer records with cleaned names and simple first and last name parsing.
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_name
+      - name: customer_first_name
+      - name: customer_last_name
+
+  - name: int_orders
+    description: Orders enriched with date fields and a derived tax rate for downstream marts.
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_customers')
+                field: customer_id
+      - name: store_id
+      - name: ordered_at
+      - name: ordered_date
+      - name: ordered_year
+      - name: ordered_month
+      - name: subtotal
+      - name: tax_paid
+      - name: order_total
+      - name: tax_rate
+      - name: order_total_diff_check
+
+  - name: int_order_items
+    description: Order item grain records standardized for downstream fact modeling.
+    columns:
+      - name: order_item_id
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_orders')
+                field: order_id
+      - name: product_sku
+      - name: item_quantity
