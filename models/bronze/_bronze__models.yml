@@ -1,5 +1,16 @@
 version: 2
 
-sources: []
+sources:
+  - name: raw
+    description: Raw source tables loaded from the upstream system.
+    schema: raw
+    tables:
+      - name: your_table_name
+        description: Replace with your raw source table.
+        columns:
+          - name: id
+            description: Replace with the primary key for this source table.
+            data_tests:
+              - not_null
 
 models: []
