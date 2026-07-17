@@ -25,12 +25,15 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 # Configuring models
-# Folder-level schema config for a medallion layout.
+# Folder-level config for a medallion layout.
 models:
   my_new_project:
     bronze:
       +schema: bronze
+      +materialized: view
     silver:
       +schema: silver
+      +materialized: view
     gold:
       +schema: gold
+      +materialized: table
