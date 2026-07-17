@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Customer records standardized from the raw customers source.
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_name
+
+  - name: stg_orders
+    description: Orders standardized from the raw orders source with timestamps and numeric amounts cast from text.
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: ordered_at
+      - name: store_id
+      - name: subtotal
+      - name: tax_paid
+      - name: order_total
+
+  - name: stg_order_items
+    description: Order item records standardized from the raw order items source.
+    columns:
+      - name: order_item_id
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: product_sku

@@ -1,0 +1,71 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw source tables in the ADEBNEYDEMODB.RAW schema.
+    database: ADEBNEYDEMODB
+    schema: RAW
+    tables:
+      - name: raw_customers
+        identifier: RAW_CUSTOMERS
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: NAME
+
+      - name: raw_orders
+        identifier: RAW_ORDERS
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: CUSTOMER
+          - name: ORDERED_AT
+          - name: STORE_ID
+          - name: SUBTOTAL
+          - name: TAX_PAID
+          - name: ORDER_TOTAL
+
+      - name: raw_order_items
+        identifier: RAW_ORDER_ITEMS
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: ORDER_ID
+          - name: SKU
+
+      - name: raw_products
+        identifier: RAW_PRODUCTS
+        columns:
+          - name: SKU
+            data_tests:
+              - not_null
+          - name: NAME
+          - name: TYPE
+          - name: PRICE
+          - name: DESCRIPTION
+
+      - name: raw_stores
+        identifier: RAW_STORES
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: NAME
+          - name: OPENED_AT
+          - name: TAX_RATE
+
+      - name: raw_supplies
+        identifier: RAW_SUPPLIES
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: NAME
+          - name: COST
+          - name: PERISHABLE
+          - name: SKU
+
+models: []
