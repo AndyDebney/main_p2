@@ -9,10 +9,10 @@ default:
       role: "<your_role>"
       database: "ADEBNEYDEMODB"
       warehouse: "<your_warehouse>"
-      schema: "DBT_ADEBNEY_P2"
+      schema: "DBT_ADEBNEY"
       threads: 4
       client_session_keep_alive: false
-      query_tag: "dbt_my_new_project_p2"
+      query_tag: "dbt_my_new_project"
       connect_retries: 0
       connect_timeout: 10
       retry_on_database_errors: true
