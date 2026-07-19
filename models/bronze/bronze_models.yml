@@ -45,3 +45,16 @@ models:
                 to: ref('stg_orders')
                 field: order_id
       - name: product_sku
+
+
+  - name: stg_products
+    description: Product records standardized from the raw products source.
+    columns:
+      - name: product_sku
+        data_tests:
+          - not_null
+          - unique
+      - name: product_name
+      - name: product_type
+      - name: price
+      - name: product_description
